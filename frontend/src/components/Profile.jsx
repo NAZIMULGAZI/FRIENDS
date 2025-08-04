@@ -10,7 +10,7 @@ import { AtSign, Heart, MessageCircle } from "lucide-react";
 const Profile = () => {
   const params = useParams();
   const userId = params.id;
-  // useGetUserProfile(userId);
+   useGetUserProfile(userId);
   const [activeTab, setActiveTab] = useState("posts");
   const navigate = useNavigate();
 
