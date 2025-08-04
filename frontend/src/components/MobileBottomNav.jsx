@@ -9,6 +9,17 @@ const navItems = [
   { icon: <TrendingUp size={20} />, path: "/explore" },
   { icon: <MessageCircle size={20} />, path: "/chat" },
   { icon: <Heart size={20} />, path: "/notifications" },
+  { icon: <PlusSquare />, text: "Create" },
+    {
+      icon: (
+        <Avatar className="w-6 h-6" size={20}>
+          <AvatarImage src={user?.profilePicture} alt="@shadcn" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+      ),
+      text: "Profile",
+    },
+    { icon: <LogOut  size={20}/>, text: "Logout" },
 ];
 
 const MobileBottomNav = () => {
