@@ -120,6 +120,12 @@ export const editProfile = async (req, res) => {
         const profilePicture = req.file;
         let cloudResponse;
 
+        const allowedGenders = ['male', 'female', 'other'];
+
+        if (!allowedGenders.includes(gender)) {
+            gender = 'none';
+        }
+
         if (profilePicture) {
             const fileUri = getDataUri(profilePicture);
             cloudResponse = await cloudinary.uploader.upload(fileUri);
@@ -148,6 +154,7 @@ export const editProfile = async (req, res) => {
         console.log(error);
     }
 };
+
 export const getSuggestedUsers = async (req, res) => {
     try {
         const suggestedUsers = await User.find({ _id: { $ne: req.id } }).select("-password");
