@@ -9,6 +9,7 @@ import {
   Search,
   TrendingUp,
 } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { useNavigate } from "react-router-dom";
 
 const navItems = [
