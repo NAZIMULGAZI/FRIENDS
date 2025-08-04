@@ -82,7 +82,7 @@ const LeftSidebar = () => {
       <div className="flex flex-col">
         <div className="my-8 pl-3 text-xl">FRIENDS</div>
         <div>
-          {sidebarItems.slice(0, 5).map((item, index) => {
+          {sidebarItems.map((item, index) => {
             return (
               <div
                 onClick={() => sidebarHandler(item.text)}
