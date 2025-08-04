@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
  
 const MobileBottomNav = () => {
   const navigate = useNavigate();
