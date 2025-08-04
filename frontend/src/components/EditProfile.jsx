@@ -99,6 +99,7 @@ const EditProfile = () => {
                             <SelectGroup>
                                 <SelectItem value="male">Male</SelectItem>
                                 <SelectItem value="female">Female</SelectItem>
+                                 <SelectItem value="none">none</SelectItem>
                             </SelectGroup>
                         </SelectContent>
                     </Select>
