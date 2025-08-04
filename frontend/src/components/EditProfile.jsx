@@ -91,7 +91,7 @@ const EditProfile = () => {
                 </div>
                 <div>
                     <h1 className='font-bold mb-2'>Gender</h1>
-                    <Select defaultValue={input.gender || "none"} onValueChange={selectChangeHandler}>
+                    <Select defaultValue={input.gender} onValueChange={selectChangeHandler}>
                         <SelectTrigger className="w-full">
                             <SelectValue />
                         </SelectTrigger>
