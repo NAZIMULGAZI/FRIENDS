@@ -17,7 +17,7 @@ const navItems = [
   { icon: <TrendingUp size={20} />, path: "/explore" },
   { icon: <MessageCircle size={20} />, path: "/chat" },
   { icon: <Heart size={20} />, path: "/notifications" },
-  { icon: <PlusSquare />, text: "Create" },
+  { icon: <PlusSquare size={20} />, text: "Create" },
     {
       icon: (
         <Avatar className="w-6 h-6" size={20}>
