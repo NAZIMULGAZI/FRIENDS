@@ -19,7 +19,7 @@ const Profile = () => {
   const isLoggedInUserProfile = user?._id === userProfile?._id;
   const isFollowing = userProfile?.followers?.includes(user?._id);
 
- const { fetchUserProfile } = useGetUserProfile(userId); 
+//  const { fetchUserProfile } = useGetUserProfile(userId); 
 
 const handleFollowToggle = async () => {
   try {
