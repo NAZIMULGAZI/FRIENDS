@@ -1,6 +1,14 @@
 // src/components/MobileBottomNav.jsx
 import React from "react";
-import { Home, Search, TrendingUp, MessageCircle, Heart } from "lucide-react";
+import {
+  Heart,
+  Home,
+  LogOut,
+  MessageCircle,
+  PlusSquare,
+  Search,
+  TrendingUp,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const navItems = [
