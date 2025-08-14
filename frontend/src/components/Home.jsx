@@ -12,20 +12,20 @@ const Home = () => {
 
   return (
     <div className="flex h-screen">
-      {/* Left Sidebar (fixed) */}
+      
       <div className="hidden md:block w-64">
         <LeftSidebar />
       </div>
 
-      {/* Feed (scrollable) */}
+     
       <div className="flex-grow overflow-y-auto">
         <Feed />
         <Outlet />
       </div>
 
-      {/* Right Sidebar (fixed) */}
+     
       <div className="hidden lg:block w-80">
-        <div className="fixed right-0 top-0 h-screen w-80 border-l bg-white ">
+        <div className="fixed right-0 top-0 h-screen w-80  bg-white overflow-y-auto">
           <RightSidebar />
         </div>
       </div>
