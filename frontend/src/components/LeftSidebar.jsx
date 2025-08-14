@@ -80,7 +80,7 @@ const LeftSidebar = () => {
   return (
     < div className="fixed top-0 left-0 z-20 px-4 h-screen w-64 hidden md:flex bg-white">
       <div className="flex flex-col h-full w-full">
-        <div className="my-8 pl-3 text-xl">FRIENDS</div>
+        <div className="my-8 pl-3 text-xl flex justift-center">FRIENDS</div>
         <div className="flex-1 overflow-y-auto">
           {sidebarItems.map((item, index) => {
             return (
