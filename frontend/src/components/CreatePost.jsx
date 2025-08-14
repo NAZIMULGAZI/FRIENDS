@@ -41,7 +41,7 @@ const CreatePost = ({ open, setOpen }) => {
     try {
       setLoading(true);
       const res = await axios.post(
-        "https://friends-l46d.onrender.com/api/v1/post/addpost",
+        "https://friends-13.onrender.com/api/v1/post/addpost",
         formData,
         {
           headers: {
@@ -66,7 +66,7 @@ const CreatePost = ({ open, setOpen }) => {
     <Dialog open={open}>
       <DialogContent onInteractOutside={() => setOpen(false)}>
         <DialogHeader className="text-center font-semibold">
-          NewPost added
+          NEWPOST 
         </DialogHeader>
         <div className="flex gap-3 items-center">
           <Avatar>
@@ -105,7 +105,7 @@ const CreatePost = ({ open, setOpen }) => {
           onClick={() => imageRef.current.click()}
           className="w-fit mx-auto bg-[#0095F6] hover:bg-[#258bcf] "
         >
-          Select from computer
+          Select from your device
         </Button>
         {imagePreview &&
           (loading ? (

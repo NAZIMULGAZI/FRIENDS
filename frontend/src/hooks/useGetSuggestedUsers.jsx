@@ -33,7 +33,7 @@ const useGetSuggestedUsers = () => {
     const fetchSuggestedUsers = useCallback(async () => {
         try {
             const res = await axios.get(
-                "https://friends-l46d.onrender.com/api/v1/user/suggested",
+                "https://friends-13.onrender.com/api/v1/user/suggested",
                 { withCredentials: true }
             );
             if (res.data && res.data.success) {

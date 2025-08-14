@@ -30,7 +30,7 @@ const LeftSidebar = () => {
 
   const logoutHandler = async () => {
     try {
-      const res = await axios.get("https://friends-l46d.onrender.com/api/v1/user/logout", {
+      const res = await axios.get("https://friends-13.onrender.com/api/v1/user/logout", {
         withCredentials: true,
       });
       if (res.data.success) {

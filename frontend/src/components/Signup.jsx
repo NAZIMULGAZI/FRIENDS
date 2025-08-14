@@ -25,7 +25,7 @@ const Signup = () => {
         e.preventDefault();
         try {
             setLoading(true);
-            const res = await axios.post('https://friends-l46d.onrender.com/api/v1/user/register', input, {
+            const res = await axios.post('https://friends-13.onrender.com/api/v1/user/register', input, {
                 headers: {
                     'Content-Type': 'application/json'
                 },

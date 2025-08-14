@@ -55,7 +55,7 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      const socketio = io('https://friends-l46d.onrender.com', {
+      const socketio = io('https://friends-13.onrender.com', {
         query: {
           userId: user?._id
         },

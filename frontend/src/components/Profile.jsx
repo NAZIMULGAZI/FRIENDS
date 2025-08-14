@@ -24,7 +24,7 @@ const Profile = () => {
 const handleFollowToggle = async () => {
   try {
     const res = await axios.put(
-      `https://friends-l46d.onrender.com/api/v1/user/${isFollowing ? "unfollow" : "follow"}/${userProfile?._id}`,
+      `https://friends-13.onrender.com/api/v1/user/${isFollowing ? "unfollow" : "follow"}/${userProfile?._id}`,
       {},
       { withCredentials: true }
     );
@@ -38,7 +38,7 @@ const handleFollowToggle = async () => {
 const handleMessage = async () => {
   try {
     const res = await axios.post(
-      `https://friends-l46d.onrender.com/api/v1/conversations`,
+      `https://friends-13.onrender.com/api/v1/conversations`,
       { receiverId: userProfile._id },
       { withCredentials: true }
     );
