@@ -35,19 +35,22 @@ const Home = () => {
 
   return (
     <div className="flex h-screen">
-     
+      {/* Fixed Left Sidebar */}
       <div className="hidden md:block w-64">
-        <LeftSidebar />
+        <div className="fixed top-0 left-0 h-screen w-64 bg-white border-r border-gray-200">
+          <LeftSidebar />
+        </div>
       </div>
 
-     
-      <div className="flex-grow overflow-y-auto">
+      {/* Feed (independent scroll) */}
+      <div className="flex-grow ml-64 mr-80">
         <Feed />
         <Outlet />
       </div>
 
+      {/* Fixed Right Sidebar */}
       <div className="hidden lg:block w-80">
-        <div className="fixed right-0 top-0 h-screen w-80 border-l border-gray-200 bg-white overflow-y-auto">
+        <div className="fixed top-0 right-0 h-screen w-80 bg-white border-l border-gray-200 overflow-y-auto">
           <RightSidebar />
         </div>
       </div>
