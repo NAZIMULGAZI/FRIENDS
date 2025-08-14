@@ -12,22 +12,22 @@ const Home = () => {
 
   return (
     <div className="flex h-screen">
-      {/* Fixed Left Sidebar with hidden scrollbar */}
+      {/* Fixed Left Sidebar with its own scroll */}
       <div className="hidden md:block w-64">
-        <div className="fixed top-0 left-0 h-screen w-64 bg-white border-r border-gray-200 overflow-y-auto hide-scrollbar">
+        <div className="fixed top-0 left-0 h-screen w-64 bg-white border-r border-gray-200 overflow-y-auto">
           <LeftSidebar />
         </div>
       </div>
 
-      {/* Feed (hidden scrollbar) */}
+      {/* Feed (independent scroll) */}
       <div className="flex-grow ml-64 mr-80">
         <Feed />
         <Outlet />
       </div>
 
-      {/* Fixed Right Sidebar with hidden scrollbar */}
+      {/* Fixed Right Sidebar with its own scroll */}
       <div className="hidden lg:block w-80">
-        <div className="fixed top-0 right-0 h-screen w-80 bg-white border-l border-gray-200 overflow-y-auto hide-scrollbar">
+        <div className="fixed top-0 right-0 h-screen w-80 bg-white border-l border-gray-200 overflow-y-auto">
           <RightSidebar />
         </div>
       </div>
