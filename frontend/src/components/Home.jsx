@@ -18,14 +18,14 @@ const Home = () => {
       </div>
 
      
-      <div className="flex-grow overflow-y-auto">
+      <div className="flex-grow overflow-y-auto hide-scrollbar">
         <Feed />
         <Outlet />
       </div>
 
      
       <div className="hidden lg:block w-80">
-        <div className="fixed right-0 top-0 h-screen w-80  bg-white overflow-y-auto">
+        <div className="fixed right-0 top-0 h-screen w-80  bg-white overflow-y-auto hide-scrollbar">
           <RightSidebar />
         </div>
       </div>
