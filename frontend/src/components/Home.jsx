@@ -20,7 +20,7 @@
 // }
 
 // export default Home
-
+ 
 import React from "react";
 import LeftSidebar from "./LeftSidebar";
 import Feed from "./Feed";
@@ -35,15 +35,21 @@ const Home = () => {
 
   return (
     <div className="flex h-screen">
-      <div className="w-64 overflow-y-auto flex-shrink-0 bg-white border-r border-gray-200">
+     
+      <div className="hidden md:block w-64">
         <LeftSidebar />
       </div>
-      <div className="flex-grow overflow-y-auto bg-gray-50">
+
+     
+      <div className="flex-grow overflow-y-auto">
         <Feed />
         <Outlet />
       </div>
-      <div className="w-80 overflow-y-auto flex-shrink-0 bg-white border-l border-gray-200">
-        <RightSidebar />
+
+      <div className="hidden lg:block w-80">
+        <div className="fixed right-0 top-0 h-screen w-80 border-l border-gray-200 bg-white overflow-y-auto">
+          <RightSidebar />
+        </div>
       </div>
     </div>
   );
