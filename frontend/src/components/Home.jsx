@@ -1,38 +1,19 @@
-import React from "react";
-import LeftSidebar from "./LeftSidebar";
-import Feed from "./Feed";
-import RightSidebar from "./RightSidebar";
-import { Outlet } from "react-router-dom";
-import useGetAllPost from "@/hooks/useGetAllPost";
-import useGetSuggestedUsers from "@/hooks/useGetSuggestedUsers";
-
 const Home = () => {
-  useGetAllPost();
-  useGetSuggestedUsers();
+    useGetAllPost();
+    useGetSuggestedUsers();
+    
+    return (
+        <div className="flex h-screen">
+            {/* Main feed area */}
+            <div className="flex-grow overflow-y-auto">
+                <Feed />
+                <Outlet />
+            </div>
 
-  return (
-    <div className="flex h-screen">
-      {/* Fixed Left Sidebar with its own scroll */}
-      <div className="hidden md:block w-64">
-        <div className="fixed top-0 left-0 h-screen w-64 bg-white border-r border-gray-200 overflow-y-auto">
-          <LeftSidebar />
+            {/* Right sidebar */}
+            <div className="w-80 overflow-y-auto flex-shrink-0 border-l ">
+                <RightSidebar />
+            </div>
         </div>
-      </div>
-
-      {/* Feed (independent scroll) */}
-      <div className="flex-grow ml-64 mr-80">
-        <Feed />
-        <Outlet />
-      </div>
-
-      {/* Fixed Right Sidebar with its own scroll */}
-      <div className="hidden lg:block w-80">
-        <div className="fixed top-0 right-0 h-screen w-80 bg-white border-l border-gray-200 overflow-y-auto">
-          <RightSidebar />
-        </div>
-      </div>
-    </div>
-  );
+    );
 };
-
-export default Home;
