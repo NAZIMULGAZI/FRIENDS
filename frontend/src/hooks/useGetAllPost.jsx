@@ -11,7 +11,7 @@ const useGetAllPost = () => {
         const fetchAllPost = async () => {
             try {
                 const res = await axios.get(
-  "https://friends-13.onrender.com/api/v1/post/all",
+  "/post/all",
   {
     // headers: {
     //   Authorization: `Bearer ${token}`,  // 👈 attach token
