@@ -40,7 +40,7 @@ const CreatePost = ({ open, setOpen }) => {
     if (imagePreview) formData.append("image", file);
     try {
       setLoading(true);
-      const res = await axios.post(
+      await api.post (
         "/post/addpost",
         formData,
         {
