@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 
 const useGetAllPost = () => {
     const dispatch = useDispatch();
+    const token = localStorage.getItem("token");
     useEffect(() => {
         const fetchAllPost = async () => {
             try {
