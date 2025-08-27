@@ -29,15 +29,12 @@ import { useDispatch } from "react-redux";
 
 const useGetSuggestedUsers = () => {
     const dispatch = useDispatch();
-    // const token = localStorage.getItem("token");
 
     const fetchSuggestedUsers = useCallback(async () => {
         try {
-            const res = await axios.get("/user/suggested", {
-//   headers: {
-//     Authorization: `Bearer ${token}`, // 👈 send token
-//   },
-                withCredentials: true }
+            const res = await axios.get(
+                "https://friends-13.onrender.com/api/v1/user/suggested",
+                { withCredentials: true }
             );
             if (res.data && res.data.success) {
                 dispatch(setSuggestedUsers(res.data.users));

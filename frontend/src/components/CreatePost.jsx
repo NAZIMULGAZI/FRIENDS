@@ -40,8 +40,8 @@ const CreatePost = ({ open, setOpen }) => {
     if (imagePreview) formData.append("image", file);
     try {
       setLoading(true);
-      await api.post (
-        "/post/addpost",
+      const res = await axios.post(
+        "https://friends-13.onrender.com/api/v1/post/addpost",
         formData,
         {
           headers: {

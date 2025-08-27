@@ -1,8 +1,4 @@
 import { useEffect } from 'react'
-import axios from "axios";  // 👈
-
-axios.defaults.baseURL = "https://friends-13.onrender.com/api/v1";
-axios.defaults.withCredentials = true;
 import ChatPage from './components/ChatPage'
 import EditProfile from './components/EditProfile'
 import Home from './components/Home'
