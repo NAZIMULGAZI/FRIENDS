@@ -33,8 +33,7 @@ export const addNewPost = async (req, res) => {
             await user.save();
         }
 
-        await post.populate({ path: 'author', select: 'username profilePicture bio' });
-
+        await post.populate({ path: 'author', select: '-password' });
 
         return res.status(201).json({
             message: 'New post added',
@@ -49,7 +48,7 @@ export const addNewPost = async (req, res) => {
 export const getAllPost = async (req, res) => {
     try {
         const posts = await Post.find().sort({ createdAt: -1 })
-            .populate({ path: 'author', select: 'username profilePicture bio' })
+            .populate({ path: 'author', select: 'username profilePicture' })
             .populate({
                 path: 'comments',
                 sort: { createdAt: -1 },
@@ -66,19 +65,18 @@ export const getAllPost = async (req, res) => {
         console.log(error);
     }
 };
-
 export const getUserPost = async (req, res) => {
     try {
         const authorId = req.id;
         const posts = await Post.find({ author: authorId }).sort({ createdAt: -1 }).populate({
             path: 'author',
-            select: 'username profilePicture bio'
+            select: 'username, profilePicture'
         }).populate({
             path: 'comments',
             sort: { createdAt: -1 },
             populate: {
                 path: 'author',
-                select: 'username profilePicture '
+                select: 'username, profilePicture'
             }
         });
         return res.status(200).json({
