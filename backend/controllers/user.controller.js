@@ -440,44 +440,64 @@ export const getSuggestedUsers = async (req, res) => {
         console.log(error);
     }
 };
-export const followOrUnfollow = async (req, res) => {
-    try {
-        const followKrneWala = req.id; // patel
-        const jiskoFollowKrunga = req.params.id; // shivani
-        if (followKrneWala === jiskoFollowKrunga) {
-            return res.status(400).json({
-                message: 'You cannot follow/unfollow yourself',
-                success: false
-            });
-        }
+//  Follow user
+export const followUser = async (req, res) => {
+  const { id } = req.params; // user to follow
+  const currentUserId = req.id; // from JWT middleware
 
-        const user = await User.findById(followKrneWala);
-        const targetUser = await User.findById(jiskoFollowKrunga);
+  if (id === currentUserId.toString()) {
+    return res.status(400).json({ message: "You can't follow yourself" });
+  }
 
-        if (!user || !targetUser) {
-            return res.status(400).json({
-                message: 'User not found',
-                success: false
-            });
-        }
-        // mai check krunga ki follow krna hai ya unfollow
-        const isFollowing = user.following.includes(jiskoFollowKrunga);
-        if (isFollowing) {
-            // unfollow logic ayega
-            await Promise.all([
-                User.updateOne({ _id: followKrneWala }, { $pull: { following: jiskoFollowKrunga } }),
-                User.updateOne({ _id: jiskoFollowKrunga }, { $pull: { followers: followKrneWala } }),
-            ])
-            return res.status(200).json({ message: 'Unfollowed successfully', success: true });
-        } else {
-            // follow logic ayega
-            await Promise.all([
-                User.updateOne({ _id: followKrneWala }, { $push: { following: jiskoFollowKrunga } }),
-                User.updateOne({ _id: jiskoFollowKrunga }, { $push: { followers: followKrneWala } }),
-            ])
-            return res.status(200).json({ message: 'followed successfully', success: true });
-        }
-    } catch (error) {
-        console.log(error);
+  const targetUser = await User.findById(id);
+  const currentUser = await User.findById(currentUserId);
+
+  if (!targetUser.followers.includes(currentUserId)) {
+    targetUser.followers.push(currentUserId);
+    currentUser.following.push(id);
+    await targetUser.save();
+    await currentUser.save();
+    return res.status(200).json({ message: "Followed successfully" });
+  } else {
+    return res.status(400).json({ message: "Already following" });
+  }
+};
+
+// Unfollow user
+export const unfollowUser = async (req, res) => {
+  const { id } = req.params;
+  const currentUserId = req.id;
+
+  const targetUser = await User.findById(id);
+  const currentUser = await User.findById(currentUserId);
+
+  targetUser.followers = targetUser.followers.filter(f => f.toString() !== currentUserId.toString());
+  currentUser.following = currentUser.following.filter(f => f.toString() !== id.toString());
+
+  await targetUser.save();
+  await currentUser.save();
+
+  res.status(200).json({ message: "Unfollowed successfully" });
+};
+
+
+export const startConversation = async (req, res) => {
+  const senderId = req.id;
+  const { receiverId } = req.body;
+
+  if (senderId.toString() === receiverId) {
+    return res.status(400).json({ message: "You can't message yourself" });
+  }
+
+  let conversation = await Conversation.findOne({
+    members: { $all: [senderId, receiverId] }
+  });
+
+  if (!conversation) {
+    conversation = await Conversation.create({
+      members: [senderId, receiverId],
+    });
     }
-}
+
+  res.status(200).json({ conversationId: conversation._id });
+};
