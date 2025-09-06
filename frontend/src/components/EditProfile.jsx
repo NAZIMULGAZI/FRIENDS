@@ -16,8 +16,8 @@ const EditProfile = () => {
     const [loading, setLoading] = useState(false);
     const [input, setInput] = useState({
         profilePhoto: user?.profilePicture,
-        bio: user?.bio || "",
-        gender: user?.gender || 'none'
+        bio: user?.bio,
+        gender: user?.gender
     });
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -53,7 +53,7 @@ const EditProfile = () => {
                     ...user,
                     bio:res.data.user?.bio,
                     profilePicture:res.data.user?.profilePicture,
-                    gender:res.data.user?.gender
+                    gender:res.data.user.gender
                 };
                 dispatch(setAuthUser(updatedUserData));
                 navigate(`/profile/${user?._id}`);
@@ -99,7 +99,6 @@ const EditProfile = () => {
                             <SelectGroup>
                                 <SelectItem value="male">Male</SelectItem>
                                 <SelectItem value="female">Female</SelectItem>
-                                 <SelectItem value="others">Others</SelectItem>
                             </SelectGroup>
                         </SelectContent>
                     </Select>
