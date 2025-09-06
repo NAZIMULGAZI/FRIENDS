@@ -24,7 +24,10 @@ const corsOptions = {
     origin: process.env.URL,
     credentials: true
 }
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: "http://localhost:3000",  // frontend origin
+  credentials: true
+}));
 
 // yha pr apni api ayengi
 app.use("/api/v1/user", userRoute);
