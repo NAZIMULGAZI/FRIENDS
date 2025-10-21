@@ -107,8 +107,6 @@ export const login = async (req, res) => {
 };
 
 
-
-
 // export const login = async (req, res) => {
 //     try {
 //         const { email, password } = req.body;
@@ -165,16 +163,16 @@ export const login = async (req, res) => {
 //         console.log(error);
 //     }
 // };
-// export const logout = async (_, res) => {
-//     try {
-//         return res.cookie("token", "", { maxAge: 0 }).json({
-//             message: 'Logged out successfully.',
-//             success: true
-//         });
-//     } catch (error) {
-//         console.log(error);
-//     }
-// };
+export const logout = async (_, res) => {
+    try {
+        return res.cookie("token", "", { maxAge: 0 }).json({
+            message: 'Logged out successfully.',
+            success: true
+        });
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 export const getProfile = async (req, res) => {
     try {
