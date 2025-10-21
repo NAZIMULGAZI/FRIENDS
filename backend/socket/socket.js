@@ -1,38 +1,93 @@
-import {Server} from "socket.io";
+import jwt from "jsonwebtoken";
+import { Server } from "socket.io";
 import express from "express";
 import http from "http";
 
 const app = express();
-
 const server = http.createServer(app);
 
 const io = new Server(server, {
-    cors: {
-  origin: process.env.URL,
-  methods: ['GET', 'POST'],
-  credentials: true
-}
+  cors: {
+    origin: process.env.URL,
+    methods: ["GET", "POST"],
+    credentials: true
+  }
+});
 
-})
-
-const userSocketMap = {} ; // this map stores socket id corresponding the user id; userId -> socketId
+const userSocketMap = {}; // userId -> socketId
 
 export const getReceiverSocketId = (receiverId) => userSocketMap[receiverId];
 
-io.on('connection', (socket)=>{
-    const userId = socket.handshake.query.userId;
-    if(userId){
-        userSocketMap[userId] = socket.id;
+io.use((socket, next) => {
+  const token = socket.handshake.auth?.token;
+  if (!token) {
+    return next(new Error("Authentication error: No token"));
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+    socket.userId = decoded.userId;
+    next();
+  } catch (err) {
+    return next(new Error("Authentication error: Invalid token"));
+  }
+});
+
+io.on("connection", (socket) => {
+  const userId = socket.userId;
+  if (userId) {
+    userSocketMap[userId] = socket.id;
+  }
+
+  io.emit("getOnlineUsers", Object.keys(userSocketMap));
+
+  socket.on("disconnect", () => {
+    if (userId) {
+      delete userSocketMap[userId];
     }
+    io.emit("getOnlineUsers", Object.keys(userSocketMap));
+  });
+});
 
-    io.emit('getOnlineUsers', Object.keys(userSocketMap));
+export { app, server, io };
 
-    socket.on('disconnect',()=>{
-        if(userId){
-            delete userSocketMap[userId];
-        }
-        io.emit('getOnlineUsers', Object.keys(userSocketMap));
-    });
-})
 
-export {app, server, io};
+
+// import {Server} from "socket.io";
+// import express from "express";
+// import http from "http";
+
+// const app = express();
+
+// const server = http.createServer(app);
+
+// const io = new Server(server, {
+//     cors: {
+//   origin: process.env.URL,
+//   methods: ['GET', 'POST'],
+//   credentials: true
+// }
+
+// })
+
+// const userSocketMap = {} ; // this map stores socket id corresponding the user id; userId -> socketId
+
+// export const getReceiverSocketId = (receiverId) => userSocketMap[receiverId];
+
+// io.on('connection', (socket)=>{
+//     const userId = socket.handshake.query.userId;
+//     if(userId){
+//         userSocketMap[userId] = socket.id;
+//     }
+
+//     io.emit('getOnlineUsers', Object.keys(userSocketMap));
+
+//     socket.on('disconnect',()=>{
+//         if(userId){
+//             delete userSocketMap[userId];
+//         }
+//         io.emit('getOnlineUsers', Object.keys(userSocketMap));
+//     });
+// })
+
+// export {app, server, io};
