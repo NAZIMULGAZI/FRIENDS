@@ -37,7 +37,8 @@ const CreatePost = ({ open, setOpen }) => {
       setLoading(true);
       const res = await axios.post('https://friends-13.onrender.com/api/v1/post/addpost', formData, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`
         },
         withCredentials: true
       });
