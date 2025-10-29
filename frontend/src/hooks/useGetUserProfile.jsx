@@ -10,7 +10,7 @@ const useGetUserProfile = (userId) => {
     useEffect(() => {
         const fetchUserProfile = async () => {
             try {
-                const res = await axios.get(`https://friends-13.onrender.com/api/v1/user/${userId}/profile`, { withCredentials: true });
+                const res = await axios.get(`https://friends-1-6lc2.onrender.com/api/v1/user/${userId}/profile`, { withCredentials: true });
                 if (res.data.success) { 
                     dispatch(setUserProfile(res.data.user));
                 }

@@ -42,7 +42,7 @@ const EditProfile = () => {
         }
         try {
             setLoading(true);
-            const res = await axios.post('https://friends-13.onrender.com/api/v1/user/profile/edit', formData,{
+            const res = await axios.post('https://friends-1-6lc2.onrender.com/api/v1/user/profile/edit', formData,{
                 headers:{
                     'Content-Type':'multipart/form-data'
                 },

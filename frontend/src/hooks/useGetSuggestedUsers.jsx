@@ -9,7 +9,7 @@ const useGetSuggestedUsers = () => {
     useEffect(() => {
         const fetchSuggestedUsers = async () => {
             try {
-                const res = await axios.get('https://friends-13.onrender.com/api/v1/user/suggested', { withCredentials: true });
+                const res = await axios.get('https://friends-1-6lc2.onrender.com/api/v1/user/suggested', { withCredentials: true });
                 if (res.data.success) { 
                     dispatch(setSuggestedUsers(res.data.users));
                 }

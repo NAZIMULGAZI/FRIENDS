@@ -24,7 +24,7 @@ const Profile = () => {
 const handleFollowToggle = async () => {
   try {
     const res = await axios.put(
-      `https://friends-13.onrender.com/api/v1/user/${isFollowing ? "unfollow" : "follow"}/${userProfile?._id}`,
+      `https://friends-1-6lc2.onrender.com/api/v1/user/${isFollowing ? "unfollow" : "follow"}/${userProfile?._id}`,
       {},
       { withCredentials: true }
     );
